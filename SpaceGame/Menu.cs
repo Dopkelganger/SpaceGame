@@ -12,34 +12,28 @@ namespace SpaceGame
 
         public bool GameOverFlag { get; set; } = false; // set to false so the game will run
 
-        public difficulty difficultyLevel = difficulty.Easy;  // default difficulty of easy+
 
-        private List<string> MainMenuOptions = new List<string>() {"New Game", "Load Game", "Quit"};
+        public List<string> MainMenuOptions = new List<string>() {"New Game", "Load Game", "Quit"};
+
+        private List<string> PlanetOptions = new List<string>() { };
 
         private List<string> ResourceOptons = new List<string>()
             {"Dark Mater", "Gold", "Hull Integrity", "Resource Capacity"};
         
-        public enum difficulty
-        {
-            Easy, 
-            Medium, 
-            Hard, 
-            Advanced
-        }
 
         public void ShowMainMenu()
         {
             ShowBanner("Main Menu", 30);
             ShowOptions(MainMenuOptions);
-            int option = GetUserInput(MainMenuOptions);
-            Console.WriteLine(option);
-
         }
+
+
+        
 
         private void ShowOptions(List<string> options, int? index = null)
             // Ex; (MenuOptions, null) => option1 \n option2 OR (MenuOptions, 1) => [1] Option1 \n [2] Option2
         {
-            if (index != null)
+            if (index == null)
             {
                 int x = 1;
                 foreach (string option in options)
@@ -70,7 +64,7 @@ namespace SpaceGame
             Console.WriteLine("".PadRight(length, x));
         }
 
-        private int GetUserInput(List<string> menu)
+        public int GetUserInput(List<string> menu)
         {
             string input = Console.ReadLine();
             int selection;
@@ -101,11 +95,7 @@ namespace SpaceGame
             return selection;
         }
 
-        //public void ShowPlanetMenu(Planet planet)
-        //{
-        //    foreach(KeyValuePair in planet)
-        //}
-
+        
         private void RunMainMenuOption(int option)
             // Main Menu only has 3 options, 1. New Game 2. Load Game 3. Quit
         {
